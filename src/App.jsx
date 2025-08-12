@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/home";
 import AboutMe from "./components/Aboutme";
-import Skills from "./components/Skills.jsx";
+import Skills from "./components/skills";
 import Contact from "./components/contact";
 import Footer from "./components/Footer";
 
