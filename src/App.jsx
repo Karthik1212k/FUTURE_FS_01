@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home";
+import Home from "./components/home.jsx";
 import AboutMe from "./components/Aboutme";
 import Skills from "./components/Skills";
 import Contact from "./components/contact";
