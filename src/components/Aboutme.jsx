@@ -58,7 +58,7 @@ export default function AboutMe() {
 
           {/* Download CV Button */}
           <motion.a
-            href="/cv.pdf"
+            href="/KarthikeyanB_CV.pdf"
             download
             className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition duration-200"
             whileHover={{ scale: 1.05 }}
