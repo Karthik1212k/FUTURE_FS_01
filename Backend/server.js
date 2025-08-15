@@ -1,10 +1,14 @@
+import express from "express";
+import cors from "cors";
 import nodemailer from "nodemailer";
 
-export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method not allowed" });
-  }
+const app = express();
+const PORT = process.env.PORT || 5000;
 
+app.use(cors());
+app.use(express.json());
+
+app.post("/contact", async (req, res) => {
   const { name, email, phone, serviceInterest, timeline, message } = req.body;
 
   try {
@@ -12,11 +16,11 @@ export default async function handler(req, res) {
       service: "gmail",
       auth: {
         user: "kkarthik2263@gmail.com", // your Gmail
-        pass: "ymsw oery vhgz bwlx" // your App Password
+        pass: "ztwf wsnj irmn couu"     // your Google App Password
       }
     });
 
-    await transporter.sendMail({
+    const mailOptions = {
       from: `"Portfolio Contact" <${email}>`,
       to: "kkarthik2263@gmail.com",
       subject: `📩 New Contact Form Submission from ${name}`,
@@ -29,11 +33,19 @@ export default async function handler(req, res) {
         <p><strong>Timeline:</strong> ${timeline}</p>
         <p><strong>Message:</strong> ${message}</p>
       `
-    });
+    };
 
+    await transporter.sendMail(mailOptions);
+
+    console.log(`✅ Email sent successfully from ${email}`);
     res.status(200).json({ success: true, message: "Message sent successfully" });
+
   } catch (error) {
     console.error("❌ Error sending email:", error);
     res.status(500).json({ success: false, message: "Failed to send message" });
   }
-}
+});
+
+app.listen(PORT, () => {
+  console.log(`✅ Server running on port ${PORT}`);
+});
