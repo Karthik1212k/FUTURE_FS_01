@@ -8,6 +8,9 @@ export default function Navbar() {
 
   const linkClasses = "text-orange-500 hover:text-blue-500 cursor-pointer";
 
+  // Added "projects" to the menu sections
+  const menuItems = ["home", "about", "skills", "projects", "contact"];
+
   return (
     <nav className="bg-black shadow-md fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,17 +25,16 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden sm:flex space-x-6">
-            {["home", "about", "skills", "contact"].map((section) => (
+            {menuItems.map((section) => (
               <ScrollLink
                 key={section}
                 to={section}
                 smooth={true}
                 duration={500}
                 spy={true}
-                offset={-80} // Adjust this to your navbar height if needed
+                offset={-80}
                 className={linkClasses}
                 activeClass="text-blue-500 font-bold"
-                // Add tabIndex for accessibility
                 tabIndex={0}
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
@@ -57,7 +59,7 @@ export default function Navbar() {
         </button>
 
         <div className="px-4 py-6 space-y-4">
-          {["home", "about", "skills", "contact"].map((section) => (
+          {menuItems.map((section) => (
             <ScrollLink
               key={section}
               to={section}
