@@ -19,7 +19,8 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/contact", formData);
+      // ✅ Change URL to serverless API route for Vercel
+      await axios.post("/api/contact", formData);
       alert("✅ Message sent successfully!");
       setFormData({
         name: "",
@@ -48,7 +49,6 @@ export default function Contact() {
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
         >
-          {/* Name */}
           <input
             type="text"
             name="name"
@@ -59,7 +59,6 @@ export default function Contact() {
             required
           />
 
-          {/* Email */}
           <input
             type="email"
             name="email"
@@ -70,7 +69,6 @@ export default function Contact() {
             required
           />
 
-          {/* Phone */}
           <input
             type="tel"
             name="phone"
@@ -80,7 +78,6 @@ export default function Contact() {
             className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700"
           />
 
-          {/* Service of Interest */}
           <select
             name="serviceInterest"
             value={formData.serviceInterest}
@@ -94,7 +91,6 @@ export default function Contact() {
             <option value="Other">Other</option>
           </select>
 
-          {/* Timeline */}
           <input
             type="text"
             name="timeline"
@@ -104,7 +100,6 @@ export default function Contact() {
             className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 md:col-span-1"
           />
 
-          {/* Project Details */}
           <textarea
             name="message"
             value={formData.message}
@@ -114,7 +109,6 @@ export default function Contact() {
             className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 md:col-span-1"
           ></textarea>
 
-          {/* Send Button */}
           <div className="md:col-span-2 flex justify-end">
             <button
               type="submit"
@@ -135,7 +129,6 @@ export default function Contact() {
           <a href="#contact" className="hover:text-orange-500">Contact me</a>
         </nav>
 
-        {/* Social Icons */}
         <div className="flex justify-center space-x-4 mb-4">
           <a href="#"><i className="fab fa-instagram text-2xl"></i></a>
           <a href="#"><i className="fab fa-linkedin text-2xl"></i></a>
@@ -143,13 +136,11 @@ export default function Contact() {
           <a href="#"><i className="fab fa-behance text-2xl"></i></a>
         </div>
 
-        {/* Contact Info */}
         <div className="flex justify-center space-x-6 text-gray-400 mb-2">
           <span>📧 kkarthik2263@gmail.com</span>
           <span>📞 +91 7339181902</span>
         </div>
 
-        {/* Designer Credit */}
         <p className="text-gray-600 text-sm">
           Designed by @Karthikeyan B | Frontend Developer
         </p>
