@@ -8,32 +8,49 @@ export default function Projects() {
     {
       title: "Web Development - Rehabionics",
       description:
-        "A professional medical technology website built for Rehabionics, focusing on advanced rehabilitation solutions with a responsive, user-friendly design.",
+        "A professional medical technology website built for Rehabionics with a responsive and user-friendly design.",
       link: "https://www.rehabionics.in/",
       icon: <FaExternalLinkAlt />,
     },
     {
       title: "CI/CD Pipeline Project",
       description:
-        "A complete CI/CD pipeline setup with GitHub Actions, Docker, and automated deployment for faster and more reliable software delivery.",
+        "A complete CI/CD pipeline setup using GitHub Actions and Docker for automated deployment.",
       link: "https://github.com/AHISH2006/NAAN-MUDHALVAN",
+      icon: <FaGithub />,
+    },
+    {
+      title: "Mini e Eommerce Website",
+      description:
+        "A mini e commerce web application with product listing, cart functionality, and responsive UI.",
+      link: "https://github.com/Karthik1212k/FUTURE_FS_02",
+      icon: <FaGithub />,
+    },
+    {
+      title: "Rebrand a Famous Brand’s Website",
+      description:
+        "A redesigned version of a famous brand’s website focusing on modern UI, branding, and usability.",
+      link: "https://github.com/Karthik1212k/FUTURE_FS_03",
       icon: <FaGithub />,
     },
   ];
 
-  // Animation variants
   const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 40 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, when: "beforeChildren", staggerChildren: 0.2 }
-    }
+      transition: {
+        duration: 0.6,
+        when: "beforeChildren",
+        staggerChildren: 0.15,
+      },
+    },
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   };
 
   return (
@@ -41,7 +58,7 @@ export default function Projects() {
       id="projects"
       className="min-h-screen bg-gradient-to-b from-[#0a0f14] via-[#05080c] to-black text-white py-16"
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -49,37 +66,41 @@ export default function Projects() {
           variants={containerVariants}
         >
           <motion.h1
-            className="text-4xl font-bold text-center mb-4"
+            className="text-4xl font-bold text-center mb-3"
             variants={cardVariants}
           >
             My Projects
           </motion.h1>
 
           <motion.p
-            className="text-gray-400 text-center mb-12"
+            className="text-gray-400 text-center mb-10 text-sm"
             variants={cardVariants}
           >
-            Here are some of the projects I have worked on.
+            here are some of the projects i have worked on.
           </motion.p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 gap-6">
             {projectList.map((project, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-900 rounded-lg shadow-lg p-6 border border-gray-700 hover:border-orange-500 hover:scale-105 transition-transform duration-300"
+                className="bg-gray-900 rounded-md p-5 border border-gray-700 hover:border-orange-500 hover:scale-105 transition-transform duration-300"
                 variants={cardVariants}
               >
-                <h2 className="text-2xl font-semibold mb-2 text-orange-400">
+                <h2 className="text-lg font-semibold mb-2 text-orange-400">
                   {project.title}
                 </h2>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+
+                <p className="text-gray-300 text-sm mb-3">
+                  {project.description}
+                </p>
+
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-orange-400 hover:text-pink-500 transition"
+                  className="inline-flex items-center gap-2 text-orange-400 text-sm hover:text-pink-500 transition"
                 >
-                  {project.icon} View Project
+                  {project.icon} view project
                 </a>
               </motion.div>
             ))}
