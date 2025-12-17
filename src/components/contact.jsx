@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import emailjs from "emailjs-com";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,8 +19,13 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      // ✅ Change URL to serverless API route for Vercel
-      await axios.post("/api/contact", formData);
+      await emailjs.send(
+        "service_94lpmx8",     // ✅ SERVICE ID
+        "template_ifd3pc5",    // ✅ TEMPLATE ID
+        formData,
+        "J13e4T1plXrFxTU31"    // ✅ PUBLIC KEY
+      );
+
       alert("✅ Message sent successfully!");
       setFormData({
         name: "",
