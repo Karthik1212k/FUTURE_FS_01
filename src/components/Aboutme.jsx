@@ -1,7 +1,6 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
-import profile from "../assets/profile.jpg";
 
 export default function AboutMe() {
   return (
@@ -9,58 +8,47 @@ export default function AboutMe() {
       id="about"
       className="bg-[#1a1a1a] text-white py-16 px-4 sm:px-8 lg:px-20"
     >
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        
-        {/* Left - Image */}
+      <div className="max-w-3xl mx-auto flex justify-center">
         <motion.div
-  className="flex justify-center"
-  initial={{ opacity: 0, x: -50 }}
-  whileInView={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8 }}
-  viewport={{ once: true }}
->
-  <div className="bg-[#2a2a2a] rounded-full p-3 shadow-lg shadow-orange-500/20">
-    <motion.img
-      src={profile}
-      alt="Karthikeyan B"
-      className="w-64 h-64 object-cover rounded-full border-4 border-orange-500 shadow-lg"
-      initial={{ scale: 0.9, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-    />
-  </div>
-</motion.div>
-
-
-        {/* Right - Text */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <h2 className="text-3xl font-bold mb-2">About Me</h2>
+
           <p className="text-orange-400 font-medium mb-6">
-            Frontend Developer | UI/UX Designer
+            Junior MERN Stack Developer | React Native Developer
           </p>
+
           <p className="text-gray-300 leading-relaxed mb-8">
-            Hi, I’m <span className="font-semibold">Karthikeyan B</span>, a passionate frontend developer who enjoys
-            crafting clean, user-friendly, and visually appealing web interfaces.
-            I specialize in modern web technologies like <span className="text-orange-400">React.js</span>, 
-            <span className="text-orange-400">Vite</span>, <span className="text-orange-400">Tailwind CSS</span> and have a strong eye for
-            <span className="text-orange-400"> UI/UX design</span>.  
+            Hi, I’m <span className="font-semibold">Karthikeyan B</span>, a motivated
+            <span className="text-orange-400"> MERN Stack </span> and
+            <span className="text-orange-400"> React Native Developer</span>
+            with a strong foundation in MongoDB, Express.js, React.js, Node.js,
+            and cross-platform mobile development.
             <br /><br />
-            Beyond coding, I have experience in <span className="text-orange-400">video editing</span> and visual storytelling,
-            blending creativity with technology to deliver engaging user experiences.  
-            I’m always excited to learn, adapt, and build solutions that make a difference.
+            I have hands-on experience in building
+            <span className="text-orange-400"> responsive web interfaces</span>,
+            developing <span className="text-orange-400">RESTful APIs</span>,
+            and creating mobile applications for
+            <span className="text-orange-400"> Android & iOS </span>
+            using React Native. I focus on clean code, performance,
+            and delivering smooth user experiences.
+            <br /><br />
+            I’m a quick learner with a strong interest in
+            <span className="text-orange-400"> UI/UX design</span>,
+            problem-solving, and modern application development, currently
+            seeking internship or entry-level opportunities to grow and
+            contribute to real-world projects.
           </p>
 
           {/* Download CV Button */}
           <motion.a
-            href="/KarthikeyanB_CV.pdf"
+            href="/Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
             download
-            className="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition duration-200"
+            className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition duration-200"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -68,8 +56,21 @@ export default function AboutMe() {
           </motion.a>
 
           {/* Contact Info */}
-          <div className="mt-6 text-gray-400 text-sm">
-            <p>Email: <span className="text-white">kkarthik2263@gmail.com</span></p>
+          <div className="mt-6 text-gray-400 text-sm space-y-1">
+            <p>
+              Email: <span className="text-white">kkarthik2263@gmail.com</span>
+            </p>
+            <p>
+              Phone: <span className="text-white">+91 7339181902</span>
+            </p>
+            <p>
+              Education: <span className="text-white">
+                B.Tech (AI & DS), Suguna College of Engineering
+              </span>
+            </p>
+            <p>
+              University: <span className="text-white">Anna University (2023–2027)</span>
+            </p>
           </div>
         </motion.div>
       </div>
