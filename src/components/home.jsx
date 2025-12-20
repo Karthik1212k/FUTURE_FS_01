@@ -29,7 +29,7 @@ export default function Home() {
             MERN STACK DEVELOPER
           </h1>
 
-          {/* Social icons */}
+          {/* Social Icons */}
           <motion.div
             className="flex gap-5 mt-5 text-gray-400 text-2xl"
             initial={{ opacity: 0, y: 20 }}
@@ -71,23 +71,23 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            {/* CONNECT WITH ME → LINKEDIN */}
+            {/* LinkedIn */}
             <motion.a
               href="https://www.linkedin.com/in/12karthikeyanb"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-lg font-semibold shadow-lg cursor-pointer border border-transparent bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 text-white inline-block text-center"
+              className="px-6 py-3 rounded-lg font-semibold shadow-lg border border-transparent bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 text-white"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               Connect With Me
             </motion.a>
 
-            {/* Download CV */}
+            {/* CV */}
             <motion.a
               href="/Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
-              download="Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
-              className="px-6 py-3 rounded-lg font-semibold shadow-lg border border-gray-600 hover:border-orange-400 text-white inline-block text-center"
+              download
+              className="px-6 py-3 rounded-lg font-semibold shadow-lg border border-gray-600 hover:border-orange-400 text-white"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -96,7 +96,7 @@ export default function Home() {
           </motion.div>
         </motion.div>
 
-        {/* RIGHT: Profile Image */}
+        {/* RIGHT: Profile Image (FIXED – NO WARPING) */}
         <motion.div
           className="md:col-span-5 lg:col-span-6 flex justify-center"
           initial={{ opacity: 0, x: 50 }}
@@ -104,16 +104,16 @@ export default function Home() {
           transition={{ duration: 1, ease: "easeOut" }}
         >
           <div className="relative group">
-            <div className="w-64 h-64 md:w-96 md:h-96 rounded-full overflow-hidden relative border-4 border-orange-500 shadow-lg shadow-orange-500/30 group-hover:scale-105 transition-transform duration-500">
+            <div className="w-64 md:w-96 aspect-square rounded-full overflow-hidden border-4 border-orange-500 shadow-lg shadow-orange-500/30 transition-transform duration-500 group-hover:scale-105">
               <img
                 src={profile}
                 alt="Karthikeyan B"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top scale-105"
               />
             </div>
-            <div className="absolute inset-0 rounded-full border-4 border-transparent group-hover:border-orange-500 transition-colors duration-500"></div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
