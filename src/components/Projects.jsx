@@ -20,7 +20,7 @@ export default function Projects() {
       icon: <FaGithub />,
     },
     {
-      title: "Mini e Eommerce Website",
+      title: "Mini e Commerce Website",
       description:
         "A mini e commerce web application with product listing, cart functionality, and responsive UI.",
       link: "https://github.com/Karthik1212k/FUTURE_FS_02",
@@ -31,6 +31,13 @@ export default function Projects() {
       description:
         "A redesigned version of a famous brand’s website focusing on modern UI, branding, and usability.",
       link: "https://github.com/Karthik1212k/FUTURE_FS_03",
+      icon: <FaGithub />,
+    },
+    {
+      title: "Object Invisibility using OpenCV",
+      description:
+        "A real-time computer vision project that creates an invisibility effect by detecting a red-colored object and replacing it with the background using OpenCV and Python.",
+      link: "https://github.com/Karthik1212k/Invisibility-Cloak-OpenCV",
       icon: <FaGithub />,
     },
   ];
