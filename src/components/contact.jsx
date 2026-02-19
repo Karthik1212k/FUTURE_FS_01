@@ -1,5 +1,7 @@
+
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import axios from "axios";
+import { motion } from "framer-motion";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,110 +21,139 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      await emailjs.send(
-        "service_94lpmx8",     // ✅ SERVICE ID
-        "template_ifd3pc5",    // ✅ TEMPLATE ID
-        formData,
-        "J13e4T1plXrFxTU31"    // ✅ PUBLIC KEY
-      );
+      const response = await axios.post("http://localhost:5000/contact", formData);
 
-      alert("✅ Message sent successfully!");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        serviceInterest: "",
-        timeline: "",
-        message: ""
-      });
+      if (response.data.success) {
+        alert("✅ Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          serviceInterest: "",
+          timeline: "",
+          message: ""
+        });
+      } else {
+        alert("❌ Failed to send message. Please try again.");
+      }
     } catch (error) {
-      console.error(error);
-      alert("❌ Failed to send message");
+      console.error("Error sending message:", error);
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(`❌ Error: ${error.response.data.message}`);
+      } else {
+        alert("❌ Failed to send message. Check your connection.");
+      }
     }
   };
 
   return (
-    <div className="bg-black text-white min-h-screen flex flex-col justify-between">
+    <div className="bg-black text-white min-h-screen flex flex-col justify-between" id="contact">
       {/* Contact Form Section */}
       <section className="max-w-5xl mx-auto py-12 px-4">
-        <h1 className="text-3xl font-bold text-center mb-2">Contact me</h1>
-        <p className="text-gray-400 text-center mb-8">
+        <motion.h1
+          className="text-3xl font-bold text-center mb-2"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          Contact me
+        </motion.h1>
+        <motion.p
+          className="text-gray-400 text-center mb-8"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           Cultivating Connections: Reach Out And Connect With Me
-        </p>
+        </motion.p>
 
-        <form
+        <motion.form
           onSubmit={handleSubmit}
           className="grid grid-cols-1 md:grid-cols-2 gap-4"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          viewport={{ once: true }}
         >
-          <input
+          <motion.input
+            whileFocus={{ scale: 1.02, borderColor: "#f97316" }}
             type="text"
             name="name"
             value={formData.name}
             onChange={handleChange}
             placeholder="Name"
-            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700"
+            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 transition-colors"
             required
           />
 
-          <input
+          <motion.input
+            whileFocus={{ scale: 1.02, borderColor: "#f97316" }}
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
             placeholder="Email"
-            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700"
+            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 transition-colors"
             required
           />
 
-          <input
+          <motion.input
+            whileFocus={{ scale: 1.02, borderColor: "#f97316" }}
             type="tel"
             name="phone"
             value={formData.phone}
             onChange={handleChange}
             placeholder="Phone Number"
-            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700"
+            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 transition-colors"
           />
 
-          <select
+          <motion.select
+            whileFocus={{ scale: 1.02, borderColor: "#f97316" }}
             name="serviceInterest"
             value={formData.serviceInterest}
             onChange={handleChange}
-            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700"
+            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 transition-colors"
           >
             <option value="">Service Of Interest</option>
             <option value="Web Development">Web Development</option>
             <option value="Mobile App Development">Mobile App Development</option>
             <option value="UI/UX Design">UI/UX Design</option>
             <option value="Other">Other</option>
-          </select>
+          </motion.select>
 
-          <input
+          <motion.input
+            whileFocus={{ scale: 1.02, borderColor: "#f97316" }}
             type="text"
             name="timeline"
             value={formData.timeline}
             onChange={handleChange}
             placeholder="Timeline"
-            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 md:col-span-1"
+            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 md:col-span-1 transition-colors"
           />
 
-          <textarea
+          <motion.textarea
+            whileFocus={{ scale: 1.02, borderColor: "#f97316" }}
             name="message"
             value={formData.message}
             onChange={handleChange}
             placeholder="Project Details..."
             rows="4"
-            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 md:col-span-1"
-          ></textarea>
+            className="bg-gray-900 p-3 rounded-md outline-none border border-gray-700 md:col-span-1 transition-colors"
+          ></motion.textarea>
 
           <div className="md:col-span-2 flex justify-end">
-            <button
+            <motion.button
               type="submit"
-              className="border border-gray-500 px-6 py-2 rounded-md hover:bg-orange-500 hover:border-orange-500 transition"
+              whileHover={{ scale: 1.05, backgroundColor: "#f97316", borderColor: "#f97316" }}
+              whileTap={{ scale: 0.95 }}
+              className="border border-gray-500 px-6 py-2 rounded-md transition-colors"
             >
               Send
-            </button>
+            </motion.button>
           </div>
-        </form>
+        </motion.form>
       </section>
 
       {/* Footer Section */}

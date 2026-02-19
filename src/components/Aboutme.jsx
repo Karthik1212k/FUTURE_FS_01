@@ -1,8 +1,24 @@
+// src/components/Aboutme.jsx
 import React from "react";
 import { FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function AboutMe() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
     <section
       id="about"
@@ -11,18 +27,20 @@ export default function AboutMe() {
       <div className="max-w-3xl mx-auto flex justify-center">
         <motion.div
           className="text-center"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold mb-2">About Me</h2>
+          <motion.h2 className="text-3xl font-bold mb-2" variants={itemVariants}>
+            About Me
+          </motion.h2>
 
-          <p className="text-orange-400 font-medium mb-6">
+          <motion.p className="text-orange-400 font-medium mb-6" variants={itemVariants}>
             Junior MERN Stack Developer | React Native Developer
-          </p>
+          </motion.p>
 
-          <p className="text-gray-300 leading-relaxed mb-8">
+          <motion.p className="text-gray-300 leading-relaxed mb-8" variants={itemVariants}>
             Hi, I’m <span className="font-semibold">Karthikeyan B</span>, a motivated
             <span className="text-orange-400"> MERN Stack </span> and
             <span className="text-orange-400"> React Native Developer</span>
@@ -42,21 +60,22 @@ export default function AboutMe() {
             problem-solving, and modern application development, currently
             seeking internship or entry-level opportunities to grow and
             contribute to real-world projects.
-          </p>
+          </motion.p>
 
           {/* Download CV Button */}
           <motion.a
             href="/Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
             download
             className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition duration-200"
-            whileHover={{ scale: 1.05 }}
+            variants={itemVariants}
+            whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgb(249, 115, 22)" }}
             whileTap={{ scale: 0.95 }}
           >
             <FaDownload className="mr-2" /> Download CV
           </motion.a>
 
           {/* Contact Info */}
-          <div className="mt-6 text-gray-400 text-sm space-y-1">
+          <motion.div className="mt-6 text-gray-400 text-sm space-y-1" variants={itemVariants}>
             <p>
               Email: <span className="text-white">kkarthik2263@gmail.com</span>
             </p>
@@ -71,7 +90,7 @@ export default function AboutMe() {
             <p>
               University: <span className="text-white">Anna University (2023–2027)</span>
             </p>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -6,6 +6,7 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { useInView } from "react-intersection-observer";
+import { motion } from "framer-motion";
 
 // Import brand icons
 import {
@@ -46,29 +47,55 @@ export default function Skills() {
     threshold: 0.2 // 20% visible
   });
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
   return (
-    <section ref={ref} className="bg-black text-white py-12">
+    <section ref={ref} className="bg-black text-white py-12" id="skills">
       {/* Heading */}
-      <h2 className="text-center text-3xl font-bold text-orange-500 mb-10">
+      <motion.h2
+        className="text-center text-3xl font-bold text-orange-500 mb-10"
+        initial={{ opacity: 0, y: -20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
         Skills
-      </h2>
+      </motion.h2>
 
       {/* Skills Grid */}
-      <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center">
+      <motion.div
+        className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 text-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
         {skills.map((skill) => (
           <SkillCard
             key={skill.id}
             skill={skill}
             animate={inView}
+            variants={itemVariants}
           />
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
 
 // Separate Skill Card Component for animation
-function SkillCard({ skill, animate }) {
+function SkillCard({ skill, animate, variants }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -82,11 +109,16 @@ function SkillCard({ skill, animate }) {
         }
         setProgress(start);
       }, 20); // update every 20ms
+      return () => clearInterval(interval);
     }
   }, [animate, skill.value]);
 
   return (
-    <div>
+    <motion.div
+      variants={variants}
+      whileHover={{ scale: 1.1 }}
+      className="p-4 rounded-xl hover:bg-gray-900 transition-colors duration-300"
+    >
       <div className="relative w-24 h-24 mx-auto mb-4 flex items-center justify-center">
         <CircularProgressbar
           value={progress}
@@ -99,6 +131,6 @@ function SkillCard({ skill, animate }) {
       </div>
       <p className="text-orange-500 font-bold">{progress}%</p>
       <p className="text-gray-300">{skill.name}</p>
-    </div>
+    </motion.div>
   );
 }

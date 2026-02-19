@@ -103,7 +103,15 @@ export default function Home() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          <div className="relative group">
+          <motion.div
+            className="relative group"
+            animate={{ y: [0, -10, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
             <div className="w-64 md:w-96 aspect-square rounded-full overflow-hidden border-4 border-orange-500 shadow-lg shadow-orange-500/30 transition-transform duration-500 group-hover:scale-105">
               <img
                 src={profile}
@@ -111,7 +119,7 @@ export default function Home() {
                 className="w-full h-full object-cover object-top scale-105"
               />
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
       </div>

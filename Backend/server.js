@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import nodemailer from "nodemailer";
+import "dotenv/config";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -8,21 +9,31 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Check for environment variables
+if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+  console.error("❌ MISSING ATTRIBUTES: EMAIL_USER or EMAIL_PASS is not set in .env file.");
+} else {
+  console.log("✅ Credentials loaded for:", process.env.EMAIL_USER);
+  console.log("🔑 Password length:", process.env.EMAIL_PASS ? process.env.EMAIL_PASS.length : 0);
+}
+
 app.post("/contact", async (req, res) => {
   const { name, email, phone, serviceInterest, timeline, message } = req.body;
 
   try {
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
-        user: "kkarthik2263@gmail.com", // your Gmail
-        pass: "ztwf wsnj irmn couu"     // your Google App Password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS.replace(/\s+/g, '') // Remove spaces if present
       }
     });
 
     const mailOptions = {
       from: `"Portfolio Contact" <${email}>`,
-      to: "kkarthik2263@gmail.com",
+      to: process.env.EMAIL_USER, // Send to yourself
       subject: `📩 New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -42,7 +53,12 @@ app.post("/contact", async (req, res) => {
 
   } catch (error) {
     console.error("❌ Error sending email:", error);
-    res.status(500).json({ success: false, message: "Failed to send message" });
+
+    if (error.code === 'EAUTH') {
+      res.status(500).json({ success: false, message: "Authentication failed. Check EMAIL_PASS in .env file." });
+    } else {
+      res.status(500).json({ success: false, message: "Failed to send message: " + error.message });
+    }
   }
 });
 
