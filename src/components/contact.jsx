@@ -21,7 +21,7 @@ export default function Contact() {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/contact", formData);
+      const response = await axios.post("/api/contact", formData);
 
       if (response.data.success) {
         alert("✅ Message sent successfully!");
