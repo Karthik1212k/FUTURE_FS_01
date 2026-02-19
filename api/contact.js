@@ -7,8 +7,15 @@ export default async function handler(req, res) {
 
     const { name, email, phone, serviceInterest, timeline, message } = req.body;
 
+    if (!process.env.EMAIL_USER) {
+        console.error("❌ Critical Error: EMAIL_USER environment variable is not defined.");
+    }
+    if (!process.env.EMAIL_PASS) {
+        console.error("❌ Critical Error: EMAIL_PASS environment variable is not defined.");
+    }
+
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-        return res.status(500).json({ success: false, message: 'Server configuration error: Missing email credentials.' });
+        return res.status(500).json({ success: false, message: 'Server configuration error: Missing email credentials. Please check Vercel Project Settings > Environment Variables.' });
     }
 
     try {
