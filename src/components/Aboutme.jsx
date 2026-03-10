@@ -2,6 +2,7 @@
 import React from "react";
 import { FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
+import MagneticButton from "./MagneticButton";
 
 export default function AboutMe() {
   const containerVariants = {
@@ -63,16 +64,14 @@ export default function AboutMe() {
           </motion.p>
 
           {/* Download CV Button */}
-          <motion.a
-            href="/Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
-            download
-            className="inline-flex items-center justify-center bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition duration-200"
-            variants={itemVariants}
-            whileHover={{ scale: 1.05, boxShadow: "0px 0px 8px rgb(249, 115, 22)" }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaDownload className="mr-2" /> Download CV
-          </motion.a>
+          <motion.div variants={itemVariants} className="flex justify-center">
+            <MagneticButton
+              href="/Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
+              download
+            >
+              <FaDownload className="mr-2" /> Download CV
+            </MagneticButton>
+          </motion.div>
 
           {/* Contact Info */}
           <motion.div className="mt-6 text-gray-400 text-sm space-y-1" variants={itemVariants}>

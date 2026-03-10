@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaExternalLinkAlt, FaGithub, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import TiltedCard from "./TiltedCard";
 import ElectricBorder from "./ElectricBorder";
+import MagneticButton from "./MagneticButton";
 
 export default function Projects() {
   const projectList = [
@@ -167,14 +168,15 @@ export default function Projects() {
                         </div>
 
                         <div className="flex justify-end">
-                          <a
+                          <MagneticButton
                             href={projectList[currentIndex].link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-white bg-orange-500 hover:bg-orange-600 px-5 py-2 rounded-lg font-medium transition-colors shadow-md"
                           >
-                            {projectList[currentIndex].icon} View Project
-                          </a>
+                            <div className="flex items-center gap-2">
+                              {projectList[currentIndex].icon} View Project
+                            </div>
+                          </MagneticButton>
                         </div>
                       </div>
                     </ElectricBorder>

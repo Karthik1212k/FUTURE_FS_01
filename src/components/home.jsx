@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import profile from "../assets/profile.jpg";
+import MagneticButton from "./MagneticButton";
 
 export default function Home() {
   return (
@@ -72,27 +73,21 @@ export default function Home() {
             transition={{ delay: 0.8, duration: 0.8 }}
           >
             {/* LinkedIn */}
-            <motion.a
+            <MagneticButton
               href="https://www.linkedin.com/in/12karthikeyanb"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3 rounded-lg font-semibold shadow-lg border border-transparent bg-gradient-to-r from-orange-500 to-pink-500 hover:from-pink-500 hover:to-orange-500 text-white"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Connect With Me
-            </motion.a>
+            </MagneticButton>
 
             {/* CV */}
-            <motion.a
+            <MagneticButton
               href="/Karthikeyan_B_Junior_MERN_Stack_Developer_CV.pdf"
               download
-              className="px-6 py-3 rounded-lg font-semibold shadow-lg border border-gray-600 hover:border-orange-400 text-white"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
             >
               Download CV
-            </motion.a>
+            </MagneticButton>
           </motion.div>
         </motion.div>
 

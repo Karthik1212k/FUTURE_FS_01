@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import MagneticButton from "./MagneticButton";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -144,14 +145,11 @@ export default function Contact() {
           ></motion.textarea>
 
           <div className="md:col-span-2 flex justify-end">
-            <motion.button
+            <MagneticButton
               type="submit"
-              whileHover={{ scale: 1.05, backgroundColor: "#f97316", borderColor: "#f97316" }}
-              whileTap={{ scale: 0.95 }}
-              className="border border-gray-500 px-6 py-2 rounded-md transition-colors"
             >
               Send
-            </motion.button>
+            </MagneticButton>
           </div>
         </motion.form>
       </section>
